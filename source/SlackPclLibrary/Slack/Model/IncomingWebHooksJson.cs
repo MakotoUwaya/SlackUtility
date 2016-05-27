@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
 namespace Slack
 {
@@ -47,6 +48,6 @@ namespace Slack
         /// アイコン指定URL
         /// </summary>
         [JsonProperty("icon_url")]
-        public string icon_url { get; set; }
+        public Uri icon_url { get; set; }
     }
 }

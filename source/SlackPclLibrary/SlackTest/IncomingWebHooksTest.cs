@@ -15,20 +15,22 @@ namespace SlackText
         [TestMethod]
         public void Send_NoIcon_Success()
         {
-            var post = new IncomingWebHooksJson() 
-            { 
-                channel = "#random", 
-                text = "てすとです！アイコン無し", 
-                username = "testuser" 
+            var iwh = new IncomingWebHooks(new Uri(hooks, UriKind.Absolute));
+            var post = new IncomingWebHooksJson()
+            {
+                channel = "#random",
+                text = "てすとです！アイコン無し",
+                username = "testuser"
             };
 
-            HttpStatusCode result = IncomingWebHooks.Send(hooks, post);
+            HttpStatusCode result = iwh.Send(post);
             Assert.AreEqual(HttpStatusCode.OK, result, "メッセージ送信失敗");
         }
 
         [TestMethod]
         public void Send_IconEmoji_Success()
         {
+            var iwh = new IncomingWebHooks(new Uri(hooks, UriKind.Absolute));
             var post = new IncomingWebHooksJsonWithIconEmoji() 
             { 
                 channel = "#random", 
@@ -37,22 +39,23 @@ namespace SlackText
                 icon_emoji = iconEmoji
             };
 
-            HttpStatusCode result = IncomingWebHooks.Send(hooks, post);
+            HttpStatusCode result = iwh.Send(post);
             Assert.AreEqual(HttpStatusCode.OK, result, "メッセージ送信失敗");
         }
 
         [TestMethod]
         public void Send_IconUrl_Success()
         {
+            var iwh = new IncomingWebHooks(new Uri(hooks, UriKind.Absolute));
             var post = new IncomingWebHooksJsonWithIconUrl() 
             { 
                 channel = "#random", 
                 text = "てすとです！アイコンURL指定", 
                 username = "testuser" , 
-                icon_url = iconUrl 
+                icon_url = new Uri(iconUrl, UriKind.Absolute)
             };
 
-            HttpStatusCode result = IncomingWebHooks.Send(hooks, post);
+            HttpStatusCode result = iwh.Send(post);
             Assert.AreEqual(HttpStatusCode.OK, result, "メッセージ送信失敗");
         }
 

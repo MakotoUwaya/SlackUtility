@@ -1,4 +1,5 @@
-﻿using System.Resources;
+﻿using System;
+using System.Resources;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -15,6 +16,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("ja")]
+
+[assembly: ComVisible(false)]
+[assembly: CLSCompliant(true)]
 
 // アセンブリのバージョン情報は、以下の 4 つの値で構成されています:
 //
